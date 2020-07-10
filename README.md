@@ -124,4 +124,4 @@ If we use a simple allocation strategy and optimization, the things change and t
 * Memory allocation and task specific allocation strategy is very important in data processing task and may help you boost your program performance regardless of the language used.
 
 
-And finally... don't trust the benchmarks! ;)
+And finally... don't trust the benchmarks numbers before understanding how they are produced! ;)
