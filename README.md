@@ -39,7 +39,7 @@ Dell 5480
 Intel(R) Core(TM) i7-7820HQ CPU @ 2.90GHz
 32GiB System memory
 
-OS Fedora 32 OS
+Fedora 32 OS
 
 Gcc 10.1, OpenJDK 14, Go 1.4
 
