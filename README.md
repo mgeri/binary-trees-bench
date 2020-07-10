@@ -41,7 +41,7 @@ Intel(R) Core(TM) i7-7820HQ CPU @ 2.90GHz
 
 OS Fedora 32 OS
 
-With Gcc 10.1, OpenJDK 14, Go 1.4.
+Gcc 10.1, OpenJDK 14, Go 1.4
 
 ## How to build and run benchmarks
 
