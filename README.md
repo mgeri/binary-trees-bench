@@ -113,14 +113,15 @@ And it works very well in parallel request-response scenario.
 
 In this particular benchmark there are many Node objects and they never die, so they are promoted to rarely collected arena for old objects and each collection is cheaper because it only looks at a small number of recently allocated Node objects.
 
-*Note*: nowadays GC are very complex because many years of studying and evolution and although from what I wrote they seems "simple", there are not! ;-) 
+*Note*: nowadays GC are very complex because many years of studying and evolution and although from what I wrote they seems "simple", there are not! :) 
 
 If we use a simple allocation strategy and optimization, the things change and they seem like what one would expect: C Gcc is the fastest... no doubts! Then Go seems to work much better, that is because the possibility to allocate a contiguous array on Nodes in memory.
 
 ## Conclusion
 
-* Try do better know each programming language which its own characteristics. There is no best one, but only someone which better fit your needs, which could be performance, memory, maintainability...  
-* Always profile your programs to understand how it works and the performance botteneck
-* Memory allocation and task specific allocation strategy is very important in data processing task and may help you to boost you performance regardless of the language used.
+* Study each programming language with its own characteristics. There is no best one, but only someone which could better fit your needs (performance, memory, concurrency, maintainability...)  
+* Always profile your programs to understand how it works and the performance bottleneck
+* Memory allocation and task specific allocation strategy is very important in data processing task and may help you boost your program performance regardless of the language used.
 
-And finally... don't trust the benchmarks! :-) 
+
+And finally... don't trust the benchmarks! ;)
