@@ -115,7 +115,7 @@ In this particular benchmark there are many Node objects and they never die, so 
 
 *Note*: nowadays GC are very complex because many years of studying and evolution and although from what I wrote they seems "simple", there are not! :) 
 
-If we use a simple allocation strategy and optimization, the things change and they seem like what one would expect: C Gcc is the fastest... no doubts! Then Go seems to work much better, that is because the possibility to allocate a contiguous array on Nodes in memory.
+If we use a simple allocation strategy and optimization, the things change and they seem like what one would expect: C Gcc is the fastest... no doubts! Then Go seems to work much better, that is because the possibility to allocate a contiguous array of Nodes in memory.
 
 ## Conclusion
 
