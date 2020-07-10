@@ -1,0 +1,92 @@
+package main
+
+import (
+	"flag"
+	"fmt"
+	"runtime"
+	"strconv"
+)
+
+var n = 0
+
+type Node struct {
+	left, right *Node
+}
+
+type NodeBufferedAllocator struct {
+	buffer []Node
+	index  int
+}
+
+func (n *Node) itemCheck() int {
+	if n.left == nil {
+		return 1
+	}
+	return 1 + n.left.itemCheck() + n.right.itemCheck()
+}
+
+func bottomUpTree(depth int) *Node {
+	if depth <= 0 {
+		return &Node{}
+	}
+	return &Node{bottomUpTree(depth - 1), bottomUpTree(depth - 1)}
+}
+
+func bottomUpTreeAllocator(depth int, allocator *NodeBufferedAllocator) *Node {
+	if depth <= 0 {
+		return allocator.NewNode(nil, nil)
+	}
+	return allocator.NewNode(bottomUpTreeAllocator(depth-1, allocator), bottomUpTreeAllocator(depth-1, allocator))
+}
+
+func newNodeBufferedAllocator(depth int) *NodeBufferedAllocator {
+	return &NodeBufferedAllocator{
+		buffer: make([]Node, 1<<(depth+1)),
+	}
+}
+
+func (a *NodeBufferedAllocator) NewNode(left, right *Node) *Node {
+	n := &a.buffer[a.index]
+	n.left = left
+	n.right = right
+	a.index++
+	return n
+}
+
+const minDepth = 4
+
+func main() {
+	fmt.Println("Available precessors ", runtime.NumCPU())
+
+	flag.Parse()
+	if flag.NArg() > 0 {
+		n, _ = strconv.Atoi(flag.Arg(0))
+	}
+
+	maxDepth := n
+	if minDepth+2 > n {
+		maxDepth = minDepth + 2
+	}
+	stretchDepth := maxDepth + 1
+
+	check := bottomUpTreeAllocator(stretchDepth, newNodeBufferedAllocator(stretchDepth)).itemCheck()
+	fmt.Printf("stretch tree of depth %d\t check: %d\n", stretchDepth, check)
+
+	longLivedTree := bottomUpTreeAllocator(maxDepth, newNodeBufferedAllocator(maxDepth))
+
+	for depth := minDepth; depth <= maxDepth; depth += 2 {
+		iterations := 1 << uint(maxDepth-depth+minDepth)
+		check = 0
+
+		// reuse allocator while iterating
+		allocator := newNodeBufferedAllocator(depth)
+
+		for i := 1; i <= iterations; i++ {
+			check += bottomUpTreeAllocator(depth, allocator).itemCheck()
+			// reset allocator index for reuse
+			allocator.index = 0
+		}
+		fmt.Printf("%d\t trees of depth %d\t check: %d\n", iterations, depth, check)
+	}
+	fmt.Printf("long lived tree of depth %d\t check: %d\n", maxDepth, longLivedTree.itemCheck())
+}
