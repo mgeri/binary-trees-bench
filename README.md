@@ -25,7 +25,7 @@ I wrote 4 kind of tests for each language (Go, Java, C):
 
 1. **Binarytrees**: based on single thread (no concurrency) and default language common allocator: *malloc* and *free* for C gcc, *new* for Java and struct allocation for Go.
 2. **Binarytrees2**: It uses concurrency. C Gcc uses pthread library and create one thread for each binary trees test, Java use an executor thread pool and Go uses go routines.
-3. **Binarytrees3**: like Binarytree but each test use it's own pool of Nodes. C and Go uses a contiguous memory array of Nodes, Java use an array of reference (so as expected it could not have a great benefit from it)
+3. **Binarytrees3**: like Binarytree but each test use its own pool of Nodes. C and Go uses a contiguous memory array of Nodes, Java use an array of reference (so as expected it could not have a great benefit from it)
 4. **Binarytrees4**: join Binarytrees2 and Binarytrees3, i.e. it uses concurrency and a memory pool of Nodes. 
 
 Note: here is also a Binarytrees4_1 for Go, which is the same test as Binarytrees4 where  each node instead of having a pointer for left and right nodes, has a node "identifier": this should help Go GC because of less references to analyze.
