@@ -19,7 +19,7 @@ Looking at the source code you can see the faster native language like **C gcc**
 
 ## My benchmarks 
 
-I decided to make my own test to better understand the behavior of C Gcc, Java and Go using the same *strategy* and take them easy to understand to best compare the benchmarks results.
+I decided to make my own test to better understand the behavior of C Gcc, Java and Go using the same *strategy* and take them easy to understand and to best compare the benchmarks results.
 
 I wrote 4 kind of tests for each language (Go, Java, C):
 
