@@ -15,7 +15,7 @@ First of all there are some important notes int the  [Binary-Trees test descript
 * As a practical matter, **the myriad ways to custom allocate memory will not be accepted**.
 * Please **don't implement your own custom "arena" or "memory pool" or "free list"** - they will not be accepted
 
-Looking at the source code you can see the faster native language like **C gcc** make use of **library memory pool** (arena pool), **Java** and **Go** do not use any pool (so it's based on it's own GC) because the **Rules** of the Benchmark Game site.
+Looking at the source code you can see the faster native language like **C gcc** make use of **library memory pool** (arena pool), **Java** and **Go** do not use any pool (so it's based on it's own GC) because the **rules** of the Benchmark Game site.
 
 ## My benchmarks 
 
@@ -33,7 +33,7 @@ Note: there is also a Binarytrees4_1 for Go, which is the same test as Binarytre
 
 ## Hardware, OS and compiler/jvm version
 
-I used my own Dell notebook:
+I used my Dell notebook:
 
 Dell 5480
 Intel(R) Core(TM) i7-7820HQ CPU @ 2.90GHz
@@ -50,7 +50,7 @@ Gcc 10.1, OpenJDK 14, Go 1.4
 * run `make` on main folder
 * run `run-bench.sh` 
 
-The output is `bench-all.md` file with hyperfine benchmarks results.
+The output is the `bench-all.md` file with hyperfine benchmarks results.
 
 ## Benchmarks results
 
@@ -111,7 +111,7 @@ Go garbage collector is a mark-and-sweep collector which has to scan all allocat
 
 And it works very well in parallel request-response scenario.
 
-In this particular benchmark there are many Node objects and they never die, so they are promoted to rarely collected arena for old objects and each collection is cheaper because it only looks at a small number of recently allocated Node objects.
+In this particular benchmark there are many Node objects and they never die, so with generatinal garbage collectors like Java GC they are promoted to rarely collected arena for old objects and each collection is cheaper because it only looks at a small number of recently allocated Node objects.
 
 *Note*: nowadays GC are very complex because many years of studying and evolution and although from what I wrote they seems "simple", there are not! :) 
 
@@ -124,4 +124,4 @@ If we use a simple allocation strategy and optimization, the things change and t
 * Memory allocation and task specific allocation strategy is very important in data processing task and may help you boost your program performance regardless of the language used.
 
 
-And finally... don't trust the benchmarks numbers before understanding how they are produced! ;)
+And finally... don't trust benchmarks result numbers before better understanding how they are produced! ;)
